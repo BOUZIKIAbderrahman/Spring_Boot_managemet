@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script th:href="@{/js/bootstrap.bundle.min.js}" type="text/javascript"></script>
+<title>Users</title>
+</head>
+<body>
+	<br>
+	<h1 class="text-primary" style="text-align: center">Employee
+		Management System</h1>
+	<br>
+	<div>
+		<a class="btn btn-primary btn-block" th:href="@{user/add}">Add
+			User</a>
+	</div>
+	<br>
+	<br>
+	<table class="table" style="text-align: center">
+
+		<thead class="table-success">
+			<tr>
+				<th>User UserName</th>
+				<th>User Role</th>
+				<th>Description</th>
+				<th>User Email</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user: ${users}">
+				<td th:text="${user.userName}"></td>
+				<td th:text="${user.role}"></td>
+				<td th:switch="${user.role}"><p th:case='ADMIN'>User is an
+						administrator</p>
+					<p th:case='MANAGER'>User is a manager</p>
+					<p th:case='GUEST'>User is a guest</p>
+
+					<p th:case='*'>User is some other thing</p></td>
+				<td th:text="${user.email}"></td>
+				<td>
+				
+				<a class="btn btn-primary"
+					th:href="@{user/edit/{id}(id=${user.id})}"
+					th:if="${user.role}=='ADMIN'">Update</a>
+					
+					
+					 <a class="btn btn-danger"
+					th:href="@{delete/{id}(id=${user.id})}"
+					th:if="${user.role}=='ADMIN'">Delete</a> <a class="btn btn-info"
+					th:unless="${user.role}=='ADMIN'">View</a></td>
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+</html>

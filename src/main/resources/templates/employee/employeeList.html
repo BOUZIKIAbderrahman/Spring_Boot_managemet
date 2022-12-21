@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script th:href="@{/js/bootstrap.bundle.min.js}" type="text/javascript"></script>
+<title>Hello Thymeleaf Page</title>
+</head>
+<body>
+	<br>
+	<h1 class="text-primary" style="text-align: center">Employee
+		Management System</h1>
+	<br>
+	<table class="table" style="text-align: center">
+		<thead class="table-success">
+			<tr>
+				<th>Employee First name</th>
+				<th>Employee Last name</th>
+				<th>Employee Email</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="employee: ${employees}">
+				<td th:text="${employee.firstName}"></td>
+				<td th:text="${employee.lastName}"></td>
+				<td th:text="${employee.email}"></td>
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+</html>
